@@ -1,0 +1,42 @@
+.schedule-editor {
+    padding: 20px;
+    font-family: Arial;
+}
+
+.workout-pool {
+    margin-bottom: 20px;
+}
+
+.draggable-workout {
+    padding: 8px;
+    margin: 5px 0;
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+.schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.week-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.schedule-cell {
+    flex: 1 1 13%;
+    min-height: 50px;
+    border: 1px dashed #aaa;
+    padding: 5px;
+    background: #fafafa;
+}
+.schedule-cell.filled {
+    background-color: #d9f7be;
+    border: 1px solid #73d13d;
+}

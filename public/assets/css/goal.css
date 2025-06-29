@@ -1,0 +1,106 @@
+/* Basic page layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Create goal link */
+a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+
+/* Goal card style */
+.goal-container {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Goal title */
+.goal-container h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+/* Paragraphs inside card */
+.goal-container p {
+    margin: 5px 0;
+}
+
+/* Progress bar */
+progress {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Form inside card */
+.goal-container form {
+    margin-top: 10px;
+}
+
+/* Form input */
+input[type="number"] {
+    padding: 6px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+/* Button */
+button {
+    background-color: #008CBA;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+    background-color: #006f99;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Celebration Message */
+.goal-completed {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Error Message (for validation if needed) */
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+}
+
+

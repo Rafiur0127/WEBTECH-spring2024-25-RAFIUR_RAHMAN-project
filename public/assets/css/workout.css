@@ -1,0 +1,120 @@
+.catalog-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+}
+
+.workout-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 280px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.workout-card h3 {
+    margin-top: 0;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.workout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.workout-table th, .workout-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.workout-table th {
+    background-color: #f2f2f2;
+}
+
+.program-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.program-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.program-card h3 {
+    margin: 0 0 10px;
+}
+
+.program-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.program-card a:hover {
+    text-decoration: underline;
+}
+body {
+    font-family: Arial;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+.catalog {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.workout {
+    background: #4CAF50;
+    color: white;
+    padding: 8px;
+    margin: 5px 0;
+    cursor: grab;
+}
+
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.day {
+    flex: 1 1 150px;
+    min-height: 150px;
+    border: 2px dashed #aaa;
+    background: white;
+    padding: 10px;
+}
+
+.dropzone {
+    list-style: none;
+    min-height: 100px;
+    padding: 5px;
+}
+
+.dropzone li {
+    background: #2196F3;
+    color: white;
+    padding: 5px;
+    margin: 5px 0;
+}
