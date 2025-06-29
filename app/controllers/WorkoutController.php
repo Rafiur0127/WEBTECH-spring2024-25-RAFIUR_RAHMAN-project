@@ -9,7 +9,6 @@ require_once ROOT . '/app/models/WorkoutModel.php';
 
 function catalog() {
     global $conn;
-    // List all programs
     $programs = getAllPrograms($conn);
     require ROOT . '/app/views/workout/catalog.php';
 }
@@ -43,18 +42,15 @@ function showDailyWorkout() {
         exit;
     }
 
-    // Get user program info
     $userProgram = getUserProgram($conn, $user_id);
     if (!$userProgram) {
         echo "No program enrolled.";
         exit;
     }
 
-    // Calculate current week number based on start date
     $currentWeek = getCurrentWeek($userProgram['start_date'], $userProgram['duration_weeks']);
-    $todayName = date('l'); // e.g. Monday
+    $todayName = date('l'); 
 
-    // Get scheduled workout for today
     $workout = getScheduledWorkout($conn, $user_id, $currentWeek, $todayName);
 
     $exercises = [];
@@ -65,7 +61,6 @@ function showDailyWorkout() {
     require ROOT . '/app/views/workout/daily.php';
 }
 
-// Helper function for week calculation
 function getCurrentWeek($programStartDate, $programDurationWeeks) {
     $today = new DateTime();
     $start = new DateTime($programStartDate);
@@ -79,7 +74,6 @@ function getCurrentWeek($programStartDate, $programDurationWeeks) {
     return $weekNumber;
 }
 
-// Show schedule editor UI
 function showScheduleEditor() {
     global $conn;
     $user_id = $_SESSION['user']['id'] ?? 0;
@@ -105,8 +99,6 @@ function showScheduleEditor() {
     require ROOT . '/app/views/workout/scheduleEditor.php';
 }
 
-
-// Save schedule changes (AJAX)
 function saveSchedule() {
     if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -129,7 +121,6 @@ function saveSchedule() {
         exit;
     }
 
-    // Get user's enrolled program_id to use for all schedule entries
     $userProgram = getUserProgram($conn, $user_id);
     if (!$userProgram) {
         echo "No program enrolled.";
@@ -139,7 +130,7 @@ function saveSchedule() {
 
     $allSaved = true;
     foreach ($scheduleData as $item) {
-        // Basic validation
+        
         $week_number = (int) ($item['week_number'] ?? 0);
         $day_of_week = $conn->real_escape_string($item['day_of_week'] ?? '');
         $workout_id = (int) ($item['workout_id'] ?? 0);
@@ -149,7 +140,6 @@ function saveSchedule() {
             continue;
         }
 
-        // Save or update schedule item
         $saved = saveScheduleItem($conn, $user_id, $program_id, $workout_id, $week_number, $day_of_week);
         if (!$saved) {
             $allSaved = false;

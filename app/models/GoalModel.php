@@ -1,5 +1,4 @@
 <?php
-// GoalModel.php
 function createGoal($conn, $user_id, $title, $description, $target_value, $unit) {
     $stmt = $conn->prepare("INSERT INTO goals (user_id, title, description, target_value, current_value, unit, status) VALUES (?, ?, ?, ?, 0, ?, 'ongoing')");
     $stmt->bind_param("issis", $user_id, $title, $description, $target_value, $unit);

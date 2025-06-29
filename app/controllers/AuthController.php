@@ -73,7 +73,7 @@ function profile() {
     global $conn;
 
     $userId = $_SESSION['user']['id'];
-    $user = getUserById($conn, $userId); // Implement this function in UserModel.php
+    $user = getUserById($conn, $userId); 
 
     $errors = [];
     $success = false;
@@ -81,14 +81,14 @@ function profile() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = $_POST;
 
-        // Basic validation
+       
         if (empty($data['first_name'])) $errors['first_name'] = "First name is required";
         if (empty($data['last_name'])) $errors['last_name'] = "Last name is required";
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = "Invalid email";
         if (!empty($data['age']) && (!is_numeric($data['age']) || $data['age'] <= 0)) $errors['age'] = "Invalid age";
 
         if (empty($errors)) {
-            if (updateUserProfile($conn, $userId, $data)) {  // Implement this function in UserModel.php
+            if (updateUserProfile($conn, $userId, $data)) {  
                 $success = true;
                 $_SESSION['user'] = getUserById($conn, $userId);
                 $user = $_SESSION['user'];
@@ -98,7 +98,7 @@ function profile() {
         }
     }
 
-    require(ROOT . '/app/views/user/profile.php');  // Create this view file to show profile form
+    require(ROOT . '/app/views/user/profile.php'); 
 }
 
 
@@ -119,8 +119,7 @@ function dashboard() {
     $activeGoals = getGoalsByStatus($conn, $user['id'], 'ongoing');
     $completedGoals = getGoalsByStatus($conn, $user['id'], 'completed');
 
-    //$achievementsCount = getAchievementCount($conn, $user_id);
-    //$ongoals = getOngoingGoals($conn, $user_id);
+  
 
     require(ROOT . '/app/views/dashboard.php');
 }

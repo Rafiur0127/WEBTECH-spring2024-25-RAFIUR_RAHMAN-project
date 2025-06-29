@@ -1,7 +1,6 @@
 <?php require_once ROOT . '/app/views/part/header.php'; ?>
 
 <style>
-    /* Basic styling */
     body {
         font-family: Arial, sans-serif;
         background: #f4f6f9;
@@ -43,7 +42,6 @@
     nav a:focus {
         background-color: #1a242f;
     }
-    /* Responsive for smaller screens */
     @media (max-width: 600px) {
         nav {
             flex-direction: column;

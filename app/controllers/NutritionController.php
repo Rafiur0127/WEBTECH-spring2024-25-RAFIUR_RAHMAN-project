@@ -36,7 +36,6 @@ function scanner() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $barcode = $_POST['barcode'];
 
-        // Simulated barcode product list
         $mockDatabase = [
             '123456789012' => [
                 'meal' => 'Oats (100g)',
@@ -57,7 +56,7 @@ function scanner() {
         if (isset($mockDatabase[$barcode])) {
             $scannedFood = $mockDatabase[$barcode];
         } else {
-            echo "<p style='color:red'>❌ No product found for this barcode.</p>";
+            echo "<p style='color:red'> No product found for this barcode.</p>";
         }
     }
 

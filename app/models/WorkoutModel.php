@@ -1,19 +1,15 @@
 <?php
-// Get all available programs
 function getAllPrograms($conn) {
     $query = "SELECT * FROM programs";
     return $conn->query($query);
 }
 
-// Get program by ID
 function getProgramById($conn, $program_id) {
     $stmt = $conn->prepare("SELECT * FROM programs WHERE id = ?");
     $stmt->bind_param("i", $program_id);
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
 }
-
-// Get workouts for a program
 function getWorkoutsByProgram($conn, $program_id) {
     $stmt = $conn->prepare("SELECT * FROM workouts WHERE program_id = ?");
     $stmt->bind_param("i", $program_id);
@@ -21,7 +17,6 @@ function getWorkoutsByProgram($conn, $program_id) {
     return $stmt->get_result();
 }
 
-// Get exercises by workout id
 function getExercisesByWorkout($conn, $workout_id) {
     $stmt = $conn->prepare("SELECT * FROM exercises WHERE workout_id = ?");
     $stmt->bind_param("i", $workout_id);
@@ -29,7 +24,6 @@ function getExercisesByWorkout($conn, $workout_id) {
     return $stmt->get_result();
 }
 
-// Get user program info (to know start_date, duration)
 function getUserProgram($conn, $user_id) {
     $stmt = $conn->prepare("
         SELECT up.*, p.duration_weeks 
@@ -41,7 +35,6 @@ function getUserProgram($conn, $user_id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-// Get scheduled workout for user by week and day
 function getScheduledWorkout($conn, $user_id, $week_number, $day_of_week) {
     $stmt = $conn->prepare("
         SELECT w.* FROM schedule s
@@ -52,9 +45,8 @@ function getScheduledWorkout($conn, $user_id, $week_number, $day_of_week) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-// Add or update schedule item
 function saveScheduleItem($conn, $user_id, $program_id, $workout_id, $week_number, $day_of_week) {
-    // Check if exists
+
     $stmt = $conn->prepare("SELECT id FROM schedule WHERE user_id = ? AND week_number = ? AND day_of_week = ?");
     $stmt->bind_param("iis", $user_id, $week_number, $day_of_week);
     $stmt->execute();
@@ -72,7 +64,6 @@ function saveScheduleItem($conn, $user_id, $program_id, $workout_id, $week_numbe
     }
 }
 function getTodayWorkout($conn, $user_id) {
-    // Get user's program details
     $stmt = $conn->prepare("
         SELECT up.*, p.duration_weeks 
         FROM user_programs up
@@ -84,7 +75,6 @@ function getTodayWorkout($conn, $user_id) {
 
     if (!$userProgram) return [];
 
-    // Calculate current week number
     $today = new DateTime();
     $start = new DateTime($userProgram['start_date']);
     $diff = $start->diff($today);
@@ -96,7 +86,6 @@ function getTodayWorkout($conn, $user_id) {
 
     $dayOfWeek = date('l');
 
-    // Get scheduled workout for this user, week, and day
     $stmt = $conn->prepare("
         SELECT w.* FROM schedule s
         JOIN workouts w ON s.workout_id = w.id
@@ -107,7 +96,6 @@ function getTodayWorkout($conn, $user_id) {
 
     if (!$workout) return [];
 
-    // Get exercises for the workout
     $stmt = $conn->prepare("SELECT * FROM exercises WHERE workout_id = ?");
     $stmt->bind_param("i", $workout['id']);
     $stmt->execute();

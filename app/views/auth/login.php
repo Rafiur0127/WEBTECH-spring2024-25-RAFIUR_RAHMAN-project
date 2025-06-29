@@ -5,7 +5,6 @@
     <title>Login - Fitness Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -94,7 +93,6 @@
             }
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 480px) {
             form {
                 padding: 20px;

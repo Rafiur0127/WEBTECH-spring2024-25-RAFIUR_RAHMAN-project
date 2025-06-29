@@ -3,8 +3,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
 require_once ROOT . '/app/models/GoalModel.php';
 require_once ROOT . '/config/database.php';
-global $conn; // Make sure $conn is available from config
-
+global $conn; 
 function create() {
     if (!isset($_SESSION['user'])) {
         header("Location: ?controller=auth&action=login");
@@ -51,7 +50,6 @@ function listGoals() {
     $user_id = $_SESSION['user']['id'];
     $message = '';
 
-    // Handle progress update POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goal_id'], $_POST['new_value'])) {
         $goal_id = (int)$_POST['goal_id'];
         $new_value = (int)$_POST['new_value'];
